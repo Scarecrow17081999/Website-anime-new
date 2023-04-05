@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import GenreResult from "../Main/GenreResult";
 export default function Allroutes() {
   return (
     <div>
@@ -22,6 +23,7 @@ export default function Allroutes() {
         <Route path="/termsAndServices">
           <h1>Terms & Services</h1>
         </Route>
+        <Route path="/genres/:name" element={<GenreResult/>}/>
       </Routes>
     </div>
   );

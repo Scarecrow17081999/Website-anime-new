@@ -1,29 +1,34 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import InputWithIcon from "./Search";
-import { ChakraProvider } from "@chakra-ui/react";
-import BadgeVisibility from "./Badge";
-import BasicButtons from "./Buttoncomp";
-import UserMenu from "./User";
 import {
+  Box,
+  StackDivider,
+  Heading,
+  Stack,
+  ChakraProvider,
   DrawerBody,
   DrawerHeader,
   DrawerContent,
   DrawerOverlay,
   Drawer,
-  Button,
   useDisclosure,
   DrawerCloseButton,
+  Divider
 } from "@chakra-ui/react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import InputWithIcon from "./Search";
+import BadgeVisibility from "./Badge";
+import Genres from "./Genres";
+import UserMenu from "./User";
+import LoginModal from "./LoginModal";
+import ToastStatus from './Toast'
+
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = useState("right");
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
@@ -58,14 +63,15 @@ export default function Navbar() {
           <InputWithIcon />
         </Box>
 
-        <Box display="flex" alignItems={"center"}>
-          <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-          <Typography sx={{ minWidth: 100 }}>Profile</Typography>
+        <Box display="flex" justifyContent="flex-end">
+          <Link>Contact</Link>
+          <Link>Profile</Link>
+          <ToastStatus />
         </Box>
 
         <Box marginRight={"25px"} display="flex" alignItems={"center"}>
           <BadgeVisibility />
-          {isAuthenticated ? <UserMenu /> : <BasicButtons />}
+          {isAuthenticated ? <UserMenu /> : <LoginModal />}
         </Box>
       </Box>
       <ChakraProvider>
@@ -73,11 +79,46 @@ export default function Navbar() {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-            <DrawerBody>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
+            <DrawerHeader borderBottomWidth="1px" color={'white'}>Basic Drawer</DrawerHeader>
+            <DrawerBody  p={"0"}>
+              <Stack
+                margin={"15px 0px 22px 0"}
+                divider={<StackDivider />}
+                spacing="4"
+              >
+                <Box pl={"15px"}>
+                  <Link to="/" size="md" textTransform="uppercase">
+                    Summary
+                  </Link>
+                </Box>
+                <Box pl={"15px"}>
+                  <Link size="xs" textTransform="uppercase">
+                    Summary
+                  </Link>
+                </Box>
+                <Box pl={"15px"}>
+                  <Link size="xs" textTransform="uppercase">
+                    Summary
+                  </Link>
+                </Box>
+                <Box pl={"15px"}>
+                  <Link size="xs" textTransform="uppercase">
+                    Summary
+                  </Link>
+                </Box>
+                <Box pl={"15px"}>
+                  <Link size="xs" textTransform="uppercase">
+                    Summary
+                  </Link>
+                </Box>
+                <Box pl={"15px"}>
+                  <Link size="xs" textTransform="uppercase">
+                    Summary
+                  </Link>
+                </Box>
+              </Stack>
+              <Divider borderBottomWidth="1px" />
+              <Genres />
             </DrawerBody>
           </DrawerContent>
         </Drawer>
