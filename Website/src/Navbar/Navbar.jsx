@@ -116,6 +116,11 @@ export default function Navbar() {
                     Summary
                   </Link>
                 </Box>
+                <Box pl={"15px"}>
+                  <Link size="xs" textTransform="uppercase">
+                    Genres
+                  </Link>
+                </Box>
               </Stack>
               <Divider borderBottomWidth="1px" />
               <Genres />
