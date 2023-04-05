@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-
+import TextField from '@mui/material/TextField';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -17,6 +17,23 @@ const style = {
   pb: 3,
 };
 
+
+
+ function BasicTextFields() {
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField id="standard-basic" label="Email" variant="standard" />
+      <TextField id="standard-basic" label="Password" variant="standard" />
+    </Box>
+  );
+}
 function ChildModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -66,10 +83,7 @@ export default function LoginModal() {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <h2 id="parent-modal-title">Text in a modal</h2>
-          <p id="parent-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
+          <BasicTextFields/>
           <ChildModal />
         </Box>
       </Modal>
