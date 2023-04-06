@@ -1,4 +1,3 @@
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,10 +11,22 @@ import "./Carousel.module.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
+const images = [
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+  "https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png",
+];
 export default function Carousel() {
   return (
     <>
-      <Swiper
+      <Swiper 
         centeredSlides={true}
         autoplay={{
           delay: 4000,
@@ -30,24 +41,13 @@ export default function Carousel() {
         slidesPerView={1}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img
-            src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/react-slider/React%20Image%20Slider%20%281%29.png"
-            alt=""
-          />
-        </SwiperSlide>
+        {images.map((e) => {
+          return (
+            <SwiperSlide>
+              <img src={e} alt="" />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

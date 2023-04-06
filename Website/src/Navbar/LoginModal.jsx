@@ -1,10 +1,10 @@
 import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContextProvider/AuthContextProvider";
 import {
-  FormHelperText,
-  InputLabel,
-  Input,
+
   Button,
   FormControl,
   TextField,
@@ -29,9 +29,10 @@ const style = {
 };
 
 function Login() {
+  const { login } = useContext(AuthContext);
   const [loginSuccessful, setLoginSuccessful] = React.useState(true);
   const [loginOrRegister, setLoginOrRegister] = React.useState(false);
-  return (!loginOrRegister?
+  return !loginOrRegister ? (
     <Box
       component="form"
       sx={{
@@ -56,18 +57,32 @@ function Login() {
           <Link>forgot password?</Link>
         </Box>
         <ChildModal />
-        <Button variant="outlined" type="submit">
+        <Button
+          onClick={() => {
+            login();
+          }}
+          variant="outlined"
+          type="submit"
+        >
           {loginSuccessful ? "Login" : <CircularProgress size={"1.6rem"} />}
         </Button>
         <Box textAlign={"center"}>
           <p>
             Don't have an account?{" "}
-            <Link onClick={()=>{setLoginOrRegister(true)}} style={{ color: "green" }}>Register</Link>
+            <Link
+              onClick={() => {
+                setLoginOrRegister(true);
+              }}
+              style={{ color: "green" }}
+            >
+              Register
+            </Link>
           </p>
         </Box>
       </FormControl>
     </Box>
-  :<Box
+  ) : (
+    <Box
       component="form"
       sx={{
         "& > :not(style)": { width: "100%" },
@@ -80,10 +95,12 @@ function Login() {
         <TextField id="standard-basic" label="Name" variant="standard" />
         <TextField id="standard-basic" label="Email" variant="standard" />
         <TextField id="standard-basic" label="Password" variant="standard" />
-        <TextField id="standard-basic" label="Confirm Password" variant="standard" />
-        <Box
-        >
-        </Box>
+        <TextField
+          id="standard-basic"
+          label="Confirm Password"
+          variant="standard"
+        />
+        <Box></Box>
         <ChildModal />
         <Button variant="outlined" type="submit">
           {loginSuccessful ? "Register" : <CircularProgress size={"1.6rem"} />}
@@ -91,11 +108,19 @@ function Login() {
         <Box textAlign={"center"}>
           <p>
             Have an account?{" "}
-            <Link onClick={()=>{setLoginOrRegister(false)}} style={{ color: "green" }}>Login</Link>
+            <Link
+              onClick={() => {
+                setLoginOrRegister(false);
+              }}
+              style={{ color: "green" }}
+            >
+              Login
+            </Link>
           </p>
         </Box>
       </FormControl>
-    </Box>);
+    </Box>
+  );
 }
 
 function ChildModal() {
@@ -129,7 +154,6 @@ function ChildModal() {
 }
 
 export default function LoginModal() {
-  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);

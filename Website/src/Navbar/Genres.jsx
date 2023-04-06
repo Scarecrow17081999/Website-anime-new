@@ -1,6 +1,6 @@
 import { Link  } from "react-router-dom";
 
-import { Text, SimpleGrid } from "@chakra-ui/react";
+import {  SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 
 export default function Genres() {

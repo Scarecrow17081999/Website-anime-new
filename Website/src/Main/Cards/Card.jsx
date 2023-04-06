@@ -22,7 +22,7 @@ const data = [
   { name: "John", comment: "lololo", anime:'boruto' },
 ];
 export default function Cards() {
-    const [toggleDetail, setToggleDetail] = React.useState(false);
+    const [toggleDetail, setToggleDetail] = React.useState(true);
     const toggle=()=>{
 setToggleDetail(!toggleDetail);
     }

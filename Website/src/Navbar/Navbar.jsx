@@ -1,8 +1,9 @@
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContextProvider/AuthContextProvider";
 import {
   Box,
   StackDivider,
-  Heading,
   Stack,
   ChakraProvider,
   DrawerBody,
@@ -12,7 +13,7 @@ import {
   Drawer,
   useDisclosure,
   DrawerCloseButton,
-  Divider
+  Divider,
 } from "@chakra-ui/react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
@@ -22,13 +23,11 @@ import BadgeVisibility from "./Badge";
 import Genres from "./Genres";
 import UserMenu from "./User";
 import LoginModal from "./LoginModal";
-import ToastStatus from './Toast'
-
+import ToastStatus from "./Toast";
 
 export default function Navbar() {
+  const { isAuthenticated } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [placement, setPlacement] = useState("right");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
@@ -46,7 +45,6 @@ export default function Navbar() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(showButton);
   return (
     <>
       <Box
@@ -79,8 +77,10 @@ export default function Navbar() {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader borderBottomWidth="1px" color={'white'}>Basic Drawer</DrawerHeader>
-            <DrawerBody  p={"0"}>
+            <DrawerHeader borderBottomWidth="1px" color={"white"}>
+              Basic Drawer
+            </DrawerHeader>
+            <DrawerBody p={"0"}>
               <Stack
                 margin={"15px 0px 22px 0"}
                 divider={<StackDivider />}
